@@ -1,0 +1,2 @@
+scenario_code,scenario_name,generated_at_utc,sql_run_id,seed,iterations,shift_percentage_points,source_protection_share,source_health_ip_share,baseline_margin_pct,p05_margin_pct,p50_margin_pct,p95_margin_pct,delta_vs_base_pct,result_unit,central_impact_bps,nbp_at_risk_sgd,total_clean_ape_sgd
+S-04,Dispute goes viral,2026-09-15T09:28:15.377812+00:00,4,42,10000,10.0,0.6,0.4,9.058419151869396,3.550884053160107,6.55619467394842,10.394003753782503,-2.5022244779209752,%,-250.2224477920975,21426467.82523018,856296787.6899999

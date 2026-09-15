@@ -1,0 +1,2 @@
+scenario_code,scenario_name,generated_at_utc,sql_run_id,seed,iterations,shift_percentage_points,source_protection_share,source_health_ip_share,baseline_margin_pct,p05_margin_pct,p50_margin_pct,p95_margin_pct,delta_vs_base_pct,result_unit,central_impact_bps,nbp_at_risk_sgd,total_clean_ape_sgd
+S-03,Care delay increases 6 months,2026-09-15T09:28:14.720810+00:00,3,42,10000,10.0,0.6,0.4,9.058419151869396,4.317850675047881,7.423745117870624,11.140026359928818,-1.6346740339987718,%,-163.46740339987716,13997661.24233402,856296787.6899999

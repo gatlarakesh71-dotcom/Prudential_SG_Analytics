@@ -1,0 +1,20 @@
+{
+  "scenario_code": "S-04",
+  "scenario_name": "Dispute goes viral",
+  "generated_at_utc": "2026-09-15T09:28:15.377812+00:00",
+  "sql_run_id": 4,
+  "seed": 42,
+  "iterations": 10000,
+  "shift_percentage_points": 10.0,
+  "source_protection_share": 0.6,
+  "source_health_ip_share": 0.4,
+  "baseline_margin_pct": 9.058419151869396,
+  "p05_margin_pct": 3.550884053160107,
+  "p50_margin_pct": 6.55619467394842,
+  "p95_margin_pct": 10.394003753782503,
+  "delta_vs_base_pct": -2.5022244779209752,
+  "result_unit": "%",
+  "central_impact_bps": -250.2224477920975,
+  "nbp_at_risk_sgd": 21426467.82523018,
+  "total_clean_ape_sgd": 856296787.6899999
+}

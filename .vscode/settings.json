@@ -1,0 +1,3 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}\\Pru_venv\\Scripts\\python.exe"
+}

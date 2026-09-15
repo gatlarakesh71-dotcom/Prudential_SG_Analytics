@@ -1,0 +1,2 @@
+scenario_code,scenario_name,generated_at_utc,sql_run_id,seed,iterations,shift_percentage_points,source_protection_share,source_health_ip_share,baseline_margin_pct,p05_margin_pct,p50_margin_pct,p95_margin_pct,delta_vs_base_pct,result_unit,central_impact_bps,nbp_at_risk_sgd,total_clean_ape_sgd
+S-02,IP rider repriced -55% with co-pay,2026-09-15T09:25:39.283951+00:00,2,42,10000,10.0,0.6,0.4,9.058419151869396,3.7971557519777397,6.1794497115870275,8.748905988666504,-2.878969440282368,%,-287.8969440282368,24652522.83571469,856296787.6899999

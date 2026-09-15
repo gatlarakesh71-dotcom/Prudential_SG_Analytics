@@ -1,0 +1,20 @@
+{
+  "scenario_code": "S-03",
+  "scenario_name": "Care delay increases 6 months",
+  "generated_at_utc": "2026-09-15T09:28:14.720810+00:00",
+  "sql_run_id": 3,
+  "seed": 42,
+  "iterations": 10000,
+  "shift_percentage_points": 10.0,
+  "source_protection_share": 0.6,
+  "source_health_ip_share": 0.4,
+  "baseline_margin_pct": 9.058419151869396,
+  "p05_margin_pct": 4.317850675047881,
+  "p50_margin_pct": 7.423745117870624,
+  "p95_margin_pct": 11.140026359928818,
+  "delta_vs_base_pct": -1.6346740339987718,
+  "result_unit": "%",
+  "central_impact_bps": -163.46740339987716,
+  "nbp_at_risk_sgd": 13997661.24233402,
+  "total_clean_ape_sgd": 856296787.6899999
+}

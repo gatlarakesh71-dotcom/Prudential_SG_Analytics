@@ -1,0 +1,20 @@
+{
+  "scenario_code": "S-06",
+  "scenario_name": "Top 5% of agents resign",
+  "generated_at_utc": "2026-09-15T09:28:16.711970+00:00",
+  "sql_run_id": 6,
+  "seed": 42,
+  "iterations": 10000,
+  "shift_percentage_points": 10.0,
+  "source_protection_share": 0.6,
+  "source_health_ip_share": 0.4,
+  "baseline_margin_pct": 9.058419151869396,
+  "p05_margin_pct": 5.152529432557193,
+  "p50_margin_pct": 8.220720995049499,
+  "p95_margin_pct": 11.478600215657028,
+  "delta_vs_base_pct": -0.8376981568198966,
+  "result_unit": "%",
+  "central_impact_bps": -83.76981568198966,
+  "nbp_at_risk_sgd": 7173182.407387112,
+  "total_clean_ape_sgd": 856296787.6899999
+}

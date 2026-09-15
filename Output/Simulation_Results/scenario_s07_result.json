@@ -1,0 +1,20 @@
+{
+  "scenario_code": "S-07",
+  "scenario_name": "Competitor undercuts by 15%",
+  "generated_at_utc": "2026-09-15T09:28:17.467479+00:00",
+  "sql_run_id": 7,
+  "seed": 42,
+  "iterations": 10000,
+  "shift_percentage_points": 10.0,
+  "source_protection_share": 0.6,
+  "source_health_ip_share": 0.4,
+  "baseline_margin_pct": 9.058419151869396,
+  "p05_margin_pct": 3.451600165185651,
+  "p50_margin_pct": 6.36648160611969,
+  "p95_margin_pct": 10.109949891495328,
+  "delta_vs_base_pct": -2.691937545749706,
+  "result_unit": "%",
+  "central_impact_bps": -269.1937545749706,
+  "nbp_at_risk_sgd": 23050974.730875757,
+  "total_clean_ape_sgd": 856296787.6899999
+}
