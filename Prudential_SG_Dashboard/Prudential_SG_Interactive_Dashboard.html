@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prudential Singapore — Business KPI Command Center</title>
+<style>
+:root{
+  --navy:#0B1F33; --navy2:#102B44; --teal:#0C8F93; --gold:#E8AF2D; --coral:#D95C3F;
+  --ink:#17324D; --muted:#6E8091; --bg:#F3F7FA; --card:#FFFFFF; --grid:#DDE6ED;
+  --green:#3AA68C; --shadow:0 10px 30px rgba(16,43,68,.10);
+}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(120deg,#eef5f7,#f7fafc 50%,#edf5fa);color:var(--ink)}
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+.sidebar{background:linear-gradient(180deg,#081A2B,#0B1F33 60%,#12324B);color:#fff;padding:24px 18px;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.03em}.brandmark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--teal),#54C6C9);display:grid;place-items:center;box-shadow:0 5px 18px rgba(12,143,147,.35)}
+.brand small{display:block;color:#9CB1C3;font-weight:600;font-size:11px;letter-spacing:.12em;margin-top:3px}
+.nav{margin-top:28px;display:flex;flex-direction:column;gap:8px}.nav button{border:0;background:transparent;color:#C6D3DF;text-align:left;padding:12px 12px;border-radius:10px;cursor:pointer;font-weight:700}.nav button:hover,.nav button.active{background:rgba(255,255,255,.09);color:#fff}.nav button.active{box-shadow:inset 3px 0 0 var(--gold)}
+.side-note{position:absolute;bottom:20px;left:18px;right:18px;padding:12px;border-radius:12px;background:rgba(255,255,255,.06);font-size:11px;line-height:1.45;color:#B7C7D4}
+.main{padding:26px 28px 40px;min-width:0}.topbar{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin-bottom:20px}.eyebrow{font-size:11px;letter-spacing:.14em;color:var(--teal);font-weight:900}.title{font-size:28px;font-weight:900;margin:3px 0 4px;letter-spacing:-.02em}.subtitle{font-size:13px;color:var(--muted)}
+.top-actions{display:flex;gap:8px;align-items:center}.status{padding:7px 10px;background:#EAF7F6;border:1px solid #BDE3E0;color:#0A6D71;border-radius:999px;font-size:11px;font-weight:800}.btn{padding:9px 12px;border:1px solid var(--grid);background:#fff;border-radius:10px;color:var(--ink);font-weight:800;cursor:pointer}.btn:hover{border-color:#B5C8D6}
+.slicers{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 18px}.slicer{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--grid);padding:8px 10px;border-radius:12px;box-shadow:0 4px 14px rgba(16,43,68,.05)}.slicer label{font-size:10px;text-transform:uppercase;letter-spacing:.11em;font-weight:900;color:#7C8E9F}.slicer select{border:0;outline:0;font-weight:800;color:var(--ink);background:transparent;min-width:138px}
+.page{display:none}.page.active{display:block}.grid{display:grid;gap:14px}.grid.kpis{grid-template-columns:repeat(4,minmax(0,1fr));}.grid.two{grid-template-columns:1.3fr 1fr}.grid.three{grid-template-columns:1.2fr .9fr .9fr}.card{background:rgba(255,255,255,.92);border:1px solid rgba(214,225,234,.95);border-radius:16px;box-shadow:var(--shadow);padding:16px}.card-title{font-size:12px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:#62768A}.card-sub{font-size:11px;color:var(--muted);margin-top:3px}.kpi{position:relative;overflow:hidden;min-height:118px}.kpi .stripe{position:absolute;left:0;top:0;bottom:0;width:5px}.kpi.teal .stripe{background:var(--teal)}.kpi.gold .stripe{background:var(--gold)}.kpi.coral .stripe{background:var(--coral)}.kpi.green .stripe{background:var(--green)}
+.kpi-value{font-size:30px;font-weight:950;letter-spacing:-.04em;margin-top:20px}.kpi-meta{font-size:11px;color:var(--muted);margin-top:3px}.delta{font-size:10px;font-weight:900;margin-top:8px}.delta.good{color:#177E66}.delta.warn{color:#A55F09}.delta.risk{color:#AA3D27}
+.chart-card{min-height:330px}.chart-wrap{height:250px;margin-top:8px}.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:10px;color:#6B7F91}.legend span{display:inline-flex;align-items:center;gap:5px}.dot{width:8px;height:8px;border-radius:99px;display:inline-block}.tealbg{background:var(--teal)}.goldbg{background:var(--gold)}.coralbg{background:var(--coral)}.greenbg{background:var(--green)}
+.insights{padding:16px;border-radius:16px;background:linear-gradient(135deg,#0B1F33,#123A56);color:#fff;min-height:330px}.insights h3{margin:0;font-size:16px}.insights p{font-size:12px;line-height:1.55;color:#C8D6E1}.insight{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.10)}.insight:last-child{border-bottom:0}.insight b{color:#fff}.signal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}.signal{padding:12px;border-radius:12px;background:#fff;border:1px solid var(--grid)}.signal-label{font-size:10px;text-transform:uppercase;color:#7B8C9C;font-weight:900}.signal-value{font-size:21px;font-weight:950;margin-top:4px}
+.badge{display:inline-block;padding:4px 7px;border-radius:999px;font-size:9px;font-weight:900}.badge.teal{background:#E6F5F4;color:#0A7477}.badge.gold{background:#FEF5DB;color:#946A05}.badge.coral{background:#FBEAE5;color:#A64630}.badge.green{background:#E7F5EF;color:#237E67}
+.footer{display:flex;justify-content:space-between;gap:16px;color:#8A9AA7;font-size:10px;margin-top:16px}.warning{margin-top:14px;padding:11px 12px;border-radius:12px;background:#FFF7E6;border:1px solid #F2D9A2;color:#825C04;font-size:11px}.blueprint{display:grid;grid-template-columns:1fr 1fr;gap:16px}.blueprint .card{min-height:220px}.mapbox{background:#F7FAFC;border:1px dashed #B7C7D4;border-radius:14px;padding:13px}.mapbox .row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #E5EDF2;font-size:11px}.mapbox .row:last-child{border-bottom:0}.pill{padding:3px 6px;border-radius:999px;background:#EAF0F5;font-weight:800;color:#53697B}.small{font-size:10px;color:#778A99}
+@media(max-width:1100px){.app{grid-template-columns:76px 1fr}.sidebar{padding:18px 10px}.brand div:last-child,.nav button span,.side-note{display:none}.nav button{font-size:0;text-align:center}.nav button::before{content:'◆';font-size:12px}.grid.kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:750px){.grid.two,.grid.three,.blueprint{grid-template-columns:1fr}.main{padding:18px}.topbar{align-items:flex-start}.grid.kpis{grid-template-columns:1fr 1fr}.slicer{width:100%;justify-content:space-between}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brandmark">P</div><div>PRUDENTIAL<small>ANALYTICS • SINGAPORE</small></div></div>
+  <div class="nav">
+    <button id="nav1" onclick="showPage(1)">Executive Cockpit</button>
+    <button id="nav2" onclick="showPage(2)">Profitability & Retention</button>
+    <button id="nav3" onclick="showPage(3)">Claims & Customer Trust</button>
+  </div>
+  <div class="side-note"><b>Certified KPI layer</b><br/>Uses the governed KPI definitions from <code>vw_nbp_margin</code>, <code>vw_health_gap</code>, <code>vw_claims_trust</code> and <code>vw_executive_kpis</code>.<br/><br/><b>Snapshot:</b> 14 Sep 2026</div>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <div><div class="eyebrow">BUSINESS KPI COMMAND CENTER</div><div class="title" id="pageTitle">Executive Cockpit</div><div class="subtitle" id="pageSubtitle">Portfolio scale, profitability, retention and trust — in one leadership view.</div></div>
+    <div class="top-actions"><span class="status">CLEAN KPI SNAPSHOT</span><button class="btn" onclick="resetFilters()">Reset slicers</button></div>
+  </div>
+  <div class="slicers">
+    <div class="slicer"><label>Product</label><select id="productSel" onchange="applyFilters()"><option>All products</option><option>Savings & Wealth</option><option>Investment-Linked</option><option>Protection</option><option>Health & IP</option></select></div>
+    <div class="slicer"><label>KPI focus</label><select id="focusSel" onchange="applyFilters()"><option>All KPIs</option><option>Commercial</option><option>Customer</option><option>Control</option></select></div>
+    <div class="slicer"><label>Data scope</label><select id="scopeSel" onchange="applyFilters()"><option>Governed snapshot</option><option>Source definitions</option></select></div>
+  </div>
+
+  <section class="page active" id="page1">
+    <div class="grid kpis" id="kpiGrid"></div>
+    <div class="grid two" style="margin-top:14px">
+      <div class="card chart-card"><div class="card-title">APE mix by margin profile</div><div class="card-sub">Low-margin vs other APE • executive portfolio composition</div><div class="chart-wrap" id="donut1"></div></div>
+      <div class="insights"><h3>Leadership read-out</h3><p>Scale is strong; the management question is earnings quality and retention. The dashboard keeps commercial and customer outcomes side-by-side so portfolio growth is not viewed in isolation.</p><div class="insight"><b>73.48%</b> of APE sits in low-margin products.</div><div class="insight"><b>9.48%</b> lapse rate indicates material retention pressure.</div><div class="insight"><b>5.85%</b> complaint rate puts claims experience on the commercial agenda.</div><div class="signal-grid"><div class="signal"><div class="signal-label">NBP</div><div class="signal-value">SGD 76.77M</div></div><div class="signal"><div class="signal-label">Margin</div><div class="signal-value">8.97%</div></div></div></div>
+    </div>
+    <div class="footer"><span>Source: governed KPI snapshot from the supplied report + KPI SQL layer.</span><span>Confidential • management dashboard</span></div>
+  </section>
+
+  <section class="page" id="page2">
+    <div class="grid two">
+      <div class="card chart-card"><div class="card-title">Blended NBP margin by product category</div><div class="card-sub">Selected category is highlighted by the slicer.</div><div class="chart-wrap" id="marginBar"></div><div class="legend"><span><i class="dot tealbg"></i> Portfolio categories</span><span><i class="dot goldbg"></i> Selected category</span></div></div>
+      <div class="card chart-card"><div class="card-title">Health gap — loss ratio vs care delay</div><div class="card-sub">Trend reproduced from the source report; intermediate points are visual-read approximations.</div><div class="chart-wrap" id="healthLine"></div><div class="legend"><span><i class="dot coralbg"></i> Loss ratio</span></div></div>
+    </div>
+    <div class="grid kpis" style="margin-top:14px"><div class="card kpi gold"><div class="stripe"></div><div class="card-title">Blended margin</div><div class="kpi-value">8.97%</div><div class="kpi-meta">New business profit / APE</div></div><div class="card kpi coral"><div class="stripe"></div><div class="card-title">Low-margin mix</div><div class="kpi-value">73.48%</div><div class="kpi-meta">APE from low-margin products</div></div><div class="card kpi coral"><div class="stripe"></div><div class="card-title">Lapse rate</div><div class="kpi-value">9.48%</div><div class="kpi-meta">Policy retention pressure</div></div><div class="card kpi teal"><div class="stripe"></div><div class="card-title">13-month failure</div><div class="kpi-value">5.59%</div><div class="kpi-meta">Persistency gap</div></div></div>
+    <div class="warning">Dashboard design note: the source report explicitly flags date-quality issues that must be corrected or quarantined before publishing monthly time-series trends. This page therefore uses the certified snapshot rather than inventing a monthly trend.</div>
+  </section>
+
+  <section class="page" id="page3">
+    <div class="grid three">
+      <div class="card kpi teal"><div class="stripe"></div><div class="card-title">Claims</div><div class="kpi-value">28,366</div><div class="kpi-meta">Accepted claim records</div></div>
+      <div class="card kpi gold"><div class="stripe"></div><div class="card-title">Claim severity</div><div class="kpi-value">SGD 9K</div><div class="kpi-meta">Average claim amount</div></div>
+      <div class="card kpi coral"><div class="stripe"></div><div class="card-title">Complaint rate</div><div class="kpi-value">5.85%</div><div class="kpi-meta">Customer trust signal</div></div>
+    </div>
+    <div class="grid two" style="margin-top:14px">
+      <div class="card chart-card"><div class="card-title">Trust & control rate profile</div><div class="card-sub">Complaint, dispute and control-breach indicators from the executive KPI snapshot.</div><div class="chart-wrap" id="trustBars"></div></div>
+      <div class="card chart-card"><div class="card-title">Customer experience profile</div><div class="card-sub">Complaint-free share complements the reported complaint rate.</div><div class="chart-wrap" id="trustDonut"></div><div class="signal-grid"><div class="signal"><div class="signal-label">Turnaround</div><div class="signal-value">19.4 days</div></div><div class="signal"><div class="signal-label">Dispute rate</div><div class="signal-value">1.57%</div></div></div></div>
+    </div>
+    <div class="insights" style="margin-top:14px;min-height:0"><h3>Customer-trust cockpit</h3><p>Claims operations become a commercial KPI when turnaround, complaints and disputes are monitored together. The SQL layer also exposes claim type, status and decline reason for drill-down once the live Power BI model is connected.</p></div>
+  </section>
+
+</main></div>
+<script>
+const data={
+  products:[
+    {name:'Savings & Wealth',margin:6.2,color:'#0C8F93'},
+    {name:'Investment-Linked',margin:12.9,color:'#E8AF2D'},
+    {name:'Protection',margin:26.4,color:'#D95C3F'},
+    {name:'Health & IP',margin:15.8,color:'#3AA68C'}
+  ],
+  health:[26.0,26.8,27.4,30.4,35.6],
+  healthLabels:['0 • no delay','1 • up to 1 month','2 • 1–3 months','3 • 3–6 months','4 • over 6 months'],
+  trust:[{label:'Complaint rate',value:5.85,color:'#D95C3F'},{label:'Control breach',value:4.50,color:'#E8AF2D'},{label:'Dispute rate',value:1.57,color:'#0C8F93'}]
+};
+const pageMeta={1:['Executive Cockpit','Portfolio scale, profitability, retention and trust — in one leadership view.'],2:['Profitability & Retention','Commercial economics and the health-gap signal, side-by-side.'],3:['Claims & Customer Trust','Turnaround, complaints, disputes and claims volume in one operating cockpit.']};
+function showPage(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page'+n).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));document.getElementById('nav'+n).classList.add('active');document.getElementById('pageTitle').textContent=pageMeta[n][0];document.getElementById('pageSubtitle').textContent=pageMeta[n][1];renderAll();}
+function resetFilters(){document.getElementById('productSel').value='All products';document.getElementById('focusSel').value='All KPIs';document.getElementById('scopeSel').value='Governed snapshot';renderAll()}
+function applyFilters(){renderAll()}
+function pct(v){return v.toFixed(2)+'%'}
+function kpiCard(title,value,meta,cl,focus){return `<div class="card kpi ${cl}" data-focus="${focus}"><div class="stripe"></div><div class="card-title">${title}</div><div class="kpi-value">${value}</div><div class="kpi-meta">${meta}</div></div>`}
+function renderKpis(){const focus=document.getElementById('focusSel').value;let items=[
+  ['Portfolio APE','SGD 856.30M','Annualised premium equivalent','teal','Commercial'],['NBP','SGD 76.77M','New business profit','gold','Commercial'],['Blended margin','8.97%','New business profit / APE','gold','Commercial'],['Low-margin mix','73.48%','APE from low-margin products','coral','Commercial'],
+  ['Lapse rate','9.48%','Policy retention pressure','coral','Customer'],['13-month failure','5.59%','Persistency gap','coral','Customer'],['Claims','28,366','Accepted claim records','teal','Customer'],['Complaint rate','5.85%','Customer trust signal','coral','Customer'],
+  ['Claim turnaround','19.4 days','Average processing time','teal','Control'],['Control breaches','4.50%','Approval / segregation signals','coral','Control'],['High-risk premium','SGD 15.42M','Agent attrition exposure','coral','Control'],['Customers','28,134','Distinct customers','teal','Commercial']
+];
+if(focus!=='All KPIs')items=items.filter(x=>x[4]===focus);document.getElementById('kpiGrid').innerHTML=items.map(x=>kpiCard(...x.slice(0,4),x[4])).join('');}
+function donutSVG(value,label,primary,secondary){const r=78,c=2*Math.PI*r,off=c*(1-value/100);return `<svg viewBox="0 0 320 250" width="100%" height="250"><g transform="translate(160,125) rotate(-90)"><circle r="${r}" fill="none" stroke="#E5ECF1" stroke-width="30"></circle><circle r="${r}" fill="none" stroke="${primary}" stroke-width="30" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}"></circle></g><text x="160" y="116" text-anchor="middle" font-size="28" font-weight="900" fill="#17324D">${value.toFixed(2)}%</text><text x="160" y="138" text-anchor="middle" font-size="11" font-weight="800" fill="#6E8091">${label}</text><text x="48" y="226" font-size="10" fill="#6E8091">Primary</text><circle cx="36" cy="222" r="5" fill="${primary}"/><text x="212" y="226" font-size="10" fill="#6E8091">Other</text><circle cx="198" cy="222" r="5" fill="${secondary}"/></svg>`}
+function renderDonut1(){document.getElementById('donut1').innerHTML=donutSVG(73.48,'Low-margin APE','#D95C3F','#DCE5EB')}
+function renderMarginBar(){const sel=document.getElementById('productSel').value;const W=720,H=250,left=165,right=50,top=18,row=47,max=30;let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" height="250">`;[0,10,20,30].forEach(t=>{const x=left+(W-left-right)*t/max;s+=`<line x1="${x}" y1="10" x2="${x}" y2="${H-25}" stroke="#E2EAF0"/><text x="${x}" y="${H-6}" text-anchor="middle" font-size="10" fill="#7B8D9C">${t}%</text>`});data.products.forEach((p,i)=>{const y=24+i*row;const w=(W-left-right)*p.margin/max;const active=sel==='All products'||sel===p.name;const fill=sel===p.name?'#E8AF2D':p.color;s+=`<text x="150" y="${y+18}" text-anchor="end" font-size="11" font-weight="800" fill="#5D7184">${p.name}</text><rect x="165" y="${y}" width="${w}" height="28" rx="7" fill="${fill}" opacity="${active?1:.28}"/><text x="${165+w+8}" y="${y+18}" font-size="11" font-weight="900" fill="#17324D">${p.margin.toFixed(1)}%</text>`});s+='</svg>';document.getElementById('marginBar').innerHTML=s}
+function renderHealth(){const W=720,H=250,left=62,right=28,top=20,bottom=44, min=25,max=37;const pts=data.health.map((v,i)=>{const x=left+i*(W-left-right)/(data.health.length-1);const y=top+(H-top-bottom)*(max-v)/(max-min);return [x,y]});let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" height="250">`;[26,28,30,32,34,36].forEach(t=>{const y=top+(H-top-bottom)*(max-t)/(max-min);s+=`<line x1="${left}" y1="${y}" x2="${W-right}" y2="${y}" stroke="#E6EDF2"/><text x="${left-10}" y="${y+4}" text-anchor="end" font-size="10" fill="#7B8D9C">${t}</text>`});const poly=pts.map(p=>p.join(',')).join(' ');s+=`<polyline points="${poly}" fill="none" stroke="#D95C3F" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>`;pts.forEach((p,i)=>{s+=`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="#D95C3F"/><text x="${p[0]}" y="${p[1]-10}" text-anchor="middle" font-size="9" font-weight="900" fill="#17324D">${data.health[i].toFixed(1)}%</text><text x="${p[0]}" y="${H-18}" text-anchor="middle" font-size="9" fill="#7B8D9C">${i+1}</text>`});s+=`<text x="${(left+W-right)/2}" y="${H-3}" text-anchor="middle" font-size="10" fill="#6E8091">Care-delay band (0–4)</text><text transform="translate(13 ${(H)/2}) rotate(-90)" text-anchor="middle" font-size="10" fill="#6E8091">Loss ratio (%)</text></svg>`;document.getElementById('healthLine').innerHTML=s}
+function renderTrustBars(){const W=720,H=250,left=155,right=45,top=20,bottom=35,max=7;let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" height="250">`;[0,2,4,6].forEach(t=>{const x=left+(W-left-right)*t/max;s+=`<line x1="${x}" y1="${top}" x2="${x}" y2="${H-bottom}" stroke="#E2EAF0"/><text x="${x}" y="${H-12}" text-anchor="middle" font-size="10" fill="#7B8D9C">${t}%</text>`});data.trust.forEach((p,i)=>{const y=top+30+i*58;const w=(W-left-right)*p.value/max;s+=`<text x="145" y="${y+16}" text-anchor="end" font-size="11" font-weight="800" fill="#5D7184">${p.label}</text><rect x="155" y="${y}" width="${w}" height="30" rx="8" fill="${p.color}"/><text x="${155+w+8}" y="${y+19}" font-size="11" font-weight="900" fill="#17324D">${p.value.toFixed(2)}%</text>`});s+='</svg>';document.getElementById('trustBars').innerHTML=s}
+function renderTrustDonut(){document.getElementById('trustDonut').innerHTML=donutSVG(94.15,'Complaint-free share','#0C8F93','#DCE5EB')}
+function renderAll(){renderKpis();renderDonut1();renderMarginBar();renderHealth();renderTrustBars();renderTrustDonut()}
+showPage(1);
+</script>
+</body>
+</html>
